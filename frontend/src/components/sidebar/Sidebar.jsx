@@ -1,13 +1,17 @@
-import SearchBar from "./Searchbar";
-import ConversationsContainer from "./ConversationsContainer";
+import ConversationListContainer from "./ConversationListContainer";
+import LoggedInUser from "./LoggedInUser";
 import LogoutButton from "./LogoutButton";
+import SearchBar from "./SearchBar";
 
 const Sidebar = () => {
   return (
-    <div className="md:flex hidden w-1/3 flex-col p-4 flex-1">
-      <SearchBar />
-      <div className="divider py-0 px-3" />
-      <ConversationsContainer />
+    <div className="w-1/3 hidden md:flex flex-col">
+      <div className="flex justify-between items-center p-4 w-full bg-gray-800 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 shadow-2xl rounded-b-xl border-b-2">
+        <LoggedInUser />
+        <SearchBar />
+      </div>
+      <ConversationListContainer />
+      <div className="divider" />
       <LogoutButton />
     </div>
   );

@@ -1,10 +1,12 @@
 import "./App.css";
-import Home from "./pages/home/Home.jsx";
-// import Login from "./pages/login/Login.jsx";
-// import Signup from "./pages/signup/Signup.jsx";
+import Home from "./Pages/home/Home";
 
 function App() {
-  return <Home />;
+  return (
+    <div className="flex flex-col">
+      <Home />
+    </div>
+  );
 }
 
 export default App;

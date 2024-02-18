@@ -1,6 +1,8 @@
+import React from "react";
+
 const Message = () => {
   return (
-    <div className="">
+    <>
       <div className="chat chat-end">
         <div className="chat-image avatar">
           <div className="w-10 rounded-full">
@@ -31,7 +33,7 @@ const Message = () => {
           07:03
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

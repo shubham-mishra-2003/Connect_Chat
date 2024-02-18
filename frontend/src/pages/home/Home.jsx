@@ -1,10 +1,9 @@
-// import MessageContainer from "../../components/messages/MessageContainer";
-import MessageContainer from "../../components/messages/MessageContainer";
-import Sidebar from "../../components/sidebar/Sidebar";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import MessageContainer from "../../components/Message/MessageContainer";
 
 const Home = () => {
   return (
-    <div className="fixed w-full h-full flex bg-gray-800 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 overflow-hidden">
+    <div className="flex h-screen">
       <Sidebar />
       <MessageContainer />
     </div>

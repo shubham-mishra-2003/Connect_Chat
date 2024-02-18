@@ -1,22 +1,12 @@
-.button {
-  width: 60%;
-  height: 40px;
-  border-radius: 5px;
-  border: 2px solid #fefefe;
-  background-color: #111;
-  box-shadow: 4px 4px #fefefe;
-  font-size: 17px;
-  font-weight: 600;
-  color: #fefefe;
-  cursor: pointer;
+/* hide scrollbar */
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
-.button:active {
-  box-shadow: 0px 0px #111;
-  transform: translate(3px, 3px);
-}
-
-/* searchInput */
+/* Search bar */
 .input-wrapper {
   display: flex;
   align-items: center;
@@ -32,8 +22,8 @@
   outline: none;
   border-radius: 50%;
   transition: 0.5s ease-in-out;
-  background-color: #00aff0;
-  box-shadow: 0px 0px 10px #00aff0;
+  background-color: #1557c0;
+  box-shadow: 0px 0px 3px #1557c0;
   padding-right: 40px;
   color: #fff;
 }
@@ -44,9 +34,9 @@
   font-size: 17px;
 }
 .searchInput::placeholder {
-  color: #fff;
+  color: #8f8f8f;
 }
-.icon {
+.Searchicon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -58,116 +48,60 @@
   outline: none;
   border-style: none;
   border-radius: 50%;
+  pointer-events: painted;
   background-color: transparent;
   transition: 0.2s linear;
 }
-.icon:focus ~ .searchInput,
+.Searchicon:focus ~ .searchInput,
 .searchInput:focus {
   box-shadow: none;
-  width: 240px;
+  width: 250px;
   border-radius: 0px;
   background-color: transparent;
-  border-bottom: 3px solid #00aff0;
+  border-bottom: 3px solid #1557c0;
   transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
 }
-
-/* Hide scrollbar */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+.femalebutton:hover {
+  background-color: rgb(245, 185, 195);
 }
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+.malebutton:hover {
+  background-color: #00aff0;
+}
+.otherbutton:hover {
+  background-color: #4d227a;
+}
+#female:checked + .femalebutton {
+  background-color: rgb(245, 185, 195);
+  transform: scale(1.1);
+}
+#male:checked + .malebutton {
+  background-color: #00aff0;
+  transform: scale(1.1);
+}
+#other:checked + .otherbutton {
+  background-color: #4d227a;
+  transform: scale(1.2);
 }
 
 ion-icon {
   font-size: 40px;
-  color: #00aff0;
+  color: #99c0ff;
   cursor: pointer;
 }
 
-.burger {
-  position: relative;
-  width: 30px;
-  height: 24px;
-  background: transparent;
-  cursor: pointer;
-  display: block;
-}
-
-.burger input {
-  display: none;
-}
-
-.burger span {
-  display: block;
-  position: absolute;
-  height: 4px;
-  width: 100%;
-  background: #fff;
-  border-radius: 9px;
-  opacity: 1;
-  left: 0;
-  transform: rotate(0deg);
-  transition: 0.25s ease-in-out;
-}
-
-.burger span:nth-of-type(1) {
-  top: 0px;
-  transform-origin: left center;
-}
-
-.burger span:nth-of-type(2) {
-  top: 50%;
-  transform: translateY(-50%);
-  transform-origin: left center;
-}
-
-.burger span:nth-of-type(3) {
-  top: 100%;
-  transform-origin: left center;
-  transform: translateY(-100%);
-}
-
-.burger input:checked ~ span:nth-of-type(1) {
-  transform: rotate(45deg);
-  top: 0px;
-  left: 5px;
-}
-
-.burger input:checked ~ span:nth-of-type(2) {
-  width: 0%;
-  opacity: 0;
-}
-
-.burger input:checked ~ span:nth-of-type(3) {
-  transform: rotate(-45deg);
-  top: 21px;
-  left: 5px;
-}
-
-.inputBg {
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(74, 0, 99, 1) 0%,
-    rgba(9, 43, 121, 1) 100%,
-    rgba(0, 212, 255, 1) 100%
-  );
-}
-
-/* message input */
-.form {
+/* Message input */
+.MessageInputForm {
+  --width-of-input: 200px;
   --border-height: 1px;
-  --border-before-color: rgba(0, 0, 0, 0.39);
-  --border-after-color: #0256ff;
+  --border-before-color: rgba(221, 221, 221, 0.39);
+  --border-after-color: #5891ff;
   --input-hovered-color: #4985e01f;
   position: relative;
-  width: 100%;
+  width: var(--width-of-input);
 }
 .msgInput {
   color: #fff;
-  font-size: 1rem;
+  font-size: 0.9rem;
   background-color: transparent;
   width: 100%;
   box-sizing: border-box;
@@ -180,12 +114,14 @@ ion-icon {
   position: absolute;
   background: var(--border-after-color);
   width: 0%;
-  height: 3px;
+  height: 2px;
   bottom: 0;
   left: 0;
   transition: 0.3s;
 }
-
+.msgInput:hover {
+  background: var(--input-hovered-color);
+}
 .msgInput:focus {
   outline: none;
 }
@@ -194,46 +130,89 @@ ion-icon {
 }
 
 /* send button */
-.send {
-  padding: 10px;
+.sendBtn {
   font-family: inherit;
-  background: #397bff;
-  color: #fff;
+  font-size: 15px;
+  background: royalblue;
+  color: white;
+  padding: 0.6em 1.4em;
+  padding-left: 0.4em;
   display: flex;
   align-items: center;
   border: none;
-  border-radius: 24px;
+  border-radius: 30px;
+  overflow: hidden;
   transition: all 0.2s;
   cursor: pointer;
+  box-shadow: 0px 0px 20px royalblue;
 }
-.send span {
+.sendBtn span {
   display: block;
-  margin-left: 0.1em;
+  margin-left: 0.3em;
   transition: all 0.3s ease-in-out;
 }
-.send svg {
+.sendBtn svg {
   display: block;
   transform-origin: center center;
-  transition: 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
-.send:hover .svg-wrapper {
+.sendBtn:hover .svg-wrapper {
   animation: fly-1 0.6s ease-in-out infinite alternate;
 }
-.send:hover svg {
-  transform: translateX(1em) rotate(45deg) scale(1.1);
+.sendBtn:hover svg {
+  transform: translateX(1.2em) rotate(45deg) scale(1.1);
 }
-.send:hover span {
+.sendBtn:hover span {
   transform: translateX(5em);
 }
-.send:active {
+.sendBtn:active {
   transform: scale(0.95);
 }
 @keyframes fly-1 {
   from {
     transform: translateY(0.1em);
   }
-
   to {
     transform: translateY(-0.1em);
   }
+}
+
+
+/* sidebar toggle */
+.burger {
+  position: relative;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  cursor: pointer;
+  display: block;
+}
+.burger span {
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  background: #fff;
+  border-radius: 9px;
+  left: 0;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+}
+.burger span:nth-of-type(1) {
+  top: 0px;
+}
+.burger span:nth-of-type(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.burger span:nth-of-type(3) {
+  top: 100%;
+  transform: translateY(-100%);
+}
+
+
+/* logo image */
+.logoImg{
+  border: 1px solid black;
+  box-shadow: 0px 0px 20px #fff;
 }
