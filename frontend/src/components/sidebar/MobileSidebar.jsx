@@ -19,7 +19,7 @@ const MobileSidebar = () => {
         </SheetTrigger>
         <SheetContent
           side="left"
-          className="max-w-80 overflow-auto p-0 flex flex-col justify-center items-center hide-scrollbar bg-gray-800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-80"
+          className="max-w-72 overflow-auto p-0 flex flex-col justify-center items-center hide-scrollbar bg-gray-800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-80"
         >
           <div className="flex items-start w-full p-2">
             <SearchBar />
