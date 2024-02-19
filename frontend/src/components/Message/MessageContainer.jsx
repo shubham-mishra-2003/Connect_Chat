@@ -1,16 +1,37 @@
+import { useEffect } from "react";
+import useConversation from "../../store/useConversation";
 import MobileSidebar from "../Sidebar/MobileSidebar";
 import MessageInput from "./MessageInput";
-import MessageNav from "./MessageNav";
 import MessageBox from "./MessagesBox";
 
 const MessageContainer = () => {
-  const noChatSelected = false;
+  const { selectedConversation, setSelectedConversation } = useConversation();
+
+  useEffect(
+    () => {
+      return () => setSelectedConversation(null);
+    },
+    [setSelectedConversation]
+  );
+
   return (
-    <div className=" flex flex-col md:w-2/3 w-full">
-      {noChatSelected
+    <div className="h-full flex flex-col md:w-2/3 w-full">
+      {!selectedConversation
         ? <NoChatSelected />
-        : <div className="flex flex-col w-full overflow-auto">
-            <MessageNav />
+        : <div className="flex h-full flex-col w-full overflow-auto">
+            <div className="flex justify-between items-center p-4 px-5 w-full bg-gray-800 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 shadow-xl border-b-2 rounded-b-xl">
+              <div className="flex gap-3 items-center">
+                <div className="avatar w-10 online">
+                  <div className="w-24 rounded-full">
+                    <img src={selectedConversation.profilePhoto} />
+                  </div>
+                </div>
+                <p className="font-bold text-xl">
+                  {selectedConversation.fullName}
+                </p>
+              </div>
+              <MobileSidebar />
+            </div>
             <MessageBox />
             <MessageInput />
           </div>}

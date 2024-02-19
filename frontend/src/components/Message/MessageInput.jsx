@@ -1,10 +1,40 @@
-import React from "react";
+import { useState } from "react";
+import useSendMessage from "../../hooks/useSendMessage";
+import toast from "react-hot-toast";
 
 const MessageInput = () => {
+  const [message, setMessage] = useState("");
+  const { sendMessage } = useSendMessage();
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    if (!message) {
+      toast.error("Type a message");
+      return;
+    }
+    await sendMessage(message);
+    setMessage("");
+    if (sendMessage) {
+      toast.success("Message sent", {
+        position: "bottom-right",
+        autoClose: 2000
+      });
+    }
+  };
+
   return (
-    <div className="flex justify-center items-center gap-3 p-2 w-full">
+    <form
+      className="flex justify-center items-center gap-3 p-2 w-full"
+      onSubmit={handleSubmit}
+    >
       <div className="MessageInputForm w-full">
-        <input className="msgInput" placeholder="Type a message" type="text" />
+        <input
+          className="msgInput"
+          placeholder="Type a message"
+          type="text"
+          value={message}
+          onChange={e => setMessage(e.target.value)}
+        />
         <span className="input-border" />
       </div>
       <button className="sendBtn">
@@ -26,7 +56,7 @@ const MessageInput = () => {
         </div>
         <span>Send</span>
       </button>
-    </div>
+    </form>
   );
 };
 

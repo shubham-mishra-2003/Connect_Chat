@@ -22,13 +22,13 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-full w-full">
+    <div className="flex items-center justify-center h-full w-full overflow-auto">
       <div className="max-w-md w-full relative flex flex-col p-8 rounded-xl text-black bg-white">
         <div className="text-2xl font-bold mb-2 text-[#1e0e4b] text-center">
           Welcome to <span className="text-[#7747ff]">Connect.Chat</span>
         </div>
         <div className="text-sm font-normal mb-4 text-center text-[#1e0e4b]">
-          Signup your account
+          Create your new account
         </div>
         <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
           <div className="block relative">

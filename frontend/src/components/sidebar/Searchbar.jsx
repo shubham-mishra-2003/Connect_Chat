@@ -1,6 +1,33 @@
+import { useState } from "react";
+import useConversation from "../../store/useConversation";
+import useGetConversations from "../../hooks/useGetConversations";
+import toast from "react-hot-toast";
+
 const SearchBar = () => {
+  const [search, setSearch] = useState("");
+
+  const { setSelectedConversation } = useConversation();
+  const { conversations } = useGetConversations();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!search) {
+      return;
+    }
+    if (search.length < 3) {
+      return toast.error("Search term must have atleatst 3 characters");
+    }
+
+    const conversation = conversations.find((c) => c.fullName.toLowerCase().includes(search.toLowerCase()))
+    if(conversation){
+      setSelectedConversation(conversation)
+      setSearch("");
+    }else toast.error("No user found")
+
+  };
+
   return (
-    <div className="input-wrapper">
+    <form className="input-wrapper" onSubmit={handleSubmit}>
       <button className="Searchicon">
         <svg
           width="25px"
@@ -25,8 +52,14 @@ const SearchBar = () => {
           />
         </svg>
       </button>
-      <input type="text" className="searchInput" placeholder="search user..." />
-    </div>
+      <input
+        type="text"
+        className="searchInput"
+        placeholder="search user..."
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+      />
+    </form>
   );
 };
 
