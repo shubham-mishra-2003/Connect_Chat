@@ -189,10 +189,11 @@ const Signup = () => {
           </div>
           <div className="divider h-1" />
           <button
+            disabled={loading}
             type="submit"
             className="bg-[#7747ff] w-max m-auto px-6 py-2 rounded text-white text-sm font-normal"
           >
-            Submit
+            {loading ? <span className="loading loading-spinner" /> : "Login"}
           </button>
         </form>
         <div className="text-sm text-center mt-[1.6rem]">

@@ -1,4 +1,17 @@
+import { useState } from "react";
+import useLogin from "../../hooks/useLogin";
+
 const Login = () => {
+  const [userName, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { loading, login } = useLogin();
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    await login(userName, password);
+  };
+
   return (
     <div className="flex items-center justify-center h-full">
       <div className="max-w-md relative flex-col p-8 rounded-2xl text-black bg-white">
@@ -8,7 +21,7 @@ const Login = () => {
         <div className="text-sm font-normal mb-4 text-center text-[#1e0e4b]">
           Log in to your account
         </div>
-        <form className="flex flex-col gap-3">
+        <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
           <div className="block relative">
             <label
               htmlFor="username"
@@ -20,6 +33,8 @@ const Login = () => {
               placeholder="shubham_mishra"
               type="text"
               id="username"
+              value={userName}
+              onChange={e => setUsername(e.target.value)}
               className="rounded border bg-transparent border-gray-500 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2  ring-gray-900 outline-0"
             />
           </div>
@@ -34,15 +49,18 @@ const Login = () => {
               placeholder="&ascbja-!"
               type="password"
               id="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               className="rounded border bg-transparent border-gray-500 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2 ring-gray-900 outline-0"
             />
           </div>
           <div className="divider h-1" />
           <button
+            disabled={loading}
             type="submit"
             className="bg-[#7747ff] w-max m-auto px-6 py-2 rounded text-white text-sm font-normal"
           >
-            Submit
+            {loading ? <span className="loading loading-spinner" /> : "Login"}
           </button>
         </form>
         <div className="text-sm text-center mt-[1.6rem]">
